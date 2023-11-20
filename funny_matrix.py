@@ -42,18 +42,34 @@ def generate_ones(matrix_size: int):  # -> list[tuple[int, int]]:
 
 
 def transform_matrix(matrix: list[tuple[int, int]]):
-    # for i in range(len(matrix)):
-    # my_list[1] = (7, 7)
-    pass
+    i = 0
+    k = 0
+    while True:
+        if i < len(matrix) - 1:
+            matrix[0] = (k, i)
+            i += 1
+        else:
+            matrix[0] = (k, i)
+            i = 0
+            k += 1
+
+        # for i in range(len(matrix)):
+        #     matrix[0] = (0, i)
+        print_matrix(matrix)
+        time.sleep(1)
+    # matrix[len(matrix)] = (len(matrix), len(matrix) - i)
+
+    return matrix
+    # pass
 
 
 def print_matrix(matrix: list[tuple[int, int]]):
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            if (i, j) == matrix[i]:
-                print("1", end="")
+            if (i, j) in matrix:
+                print("1", end=" ")
             else:
-                print("0", end="")
+                print("0", end=" ")
         print("")
     print("")
 
@@ -63,10 +79,13 @@ def main():
     # Matrix = [[0 for x in range(matrix_size)] for y in range(matrix_size)]
     # matrix_print(matrix_size)
     matrix = generate_ones(matrix_size)
-    while True:
-        print_matrix(matrix)
-        # print(matrix_size)
-        time.sleep(1)
+    matrix_temp = matrix.copy()
+    matrix = transform_matrix(matrix_temp)
+    # while True:
+    #     print_matrix(matrix)
+    #     matrix_temp = matrix.copy()
+    #     matrix = transform_matrix(matrix_temp)
+    #     time.sleep(1)
 
 
 if __name__ == "__main__":
