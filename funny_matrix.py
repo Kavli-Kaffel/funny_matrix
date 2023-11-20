@@ -39,25 +39,40 @@ def generate_ones(matrix_size: int):  # -> list[tuple[int, int]]:
 
 
 def transform_matrix(matrix: list[tuple[int, int]]):
+    # j=0
     # for i in range(len(matrix)):
-    #     if i % 2 == 0:
-    #         if matrix[i][1] < len(matrix) - 1 and matrix[i][0] == 0:
-    #             matrix[i] = (matrix[i][0], matrix[i][1] + 1)
-    #         elif matrix[i][1] == len(matrix) - 1 and matrix[i][0] < len(matrix) - 1:
-    #             matrix[i] = (matrix[i][0] + 1, matrix[i][1])
-    #         elif matrix[i][0] == len(matrix) - 1 and matrix[i][1] > 0:
-    #             matrix[i] = (matrix[i][0], matrix[i][1] - 1)
-    #         elif matrix[i][1] == 0 and matrix[i][0] > 0:
-    #             matrix[i] = (matrix[i][0] - 1, matrix[i][1])
+    #     if j >= len(matrix)/2:
+    #         pass
+    #     if matrix[i][1] < len(matrix) - i - 1 and matrix[i][0] == i:
+    #         matrix[i] = (matrix[i][0], matrix[i][1] + 1)
+    #     elif matrix[i][1] == len(matrix) - i - 1 and matrix[i][0] < len(matrix) - i - 1:
+    #         matrix[i] = (matrix[i][0] + 1, matrix[i][1])
+    #     elif matrix[i][0] == len(matrix) - i - 1 and matrix[i][1] > i:
+    #         matrix[i] = (matrix[i][0], matrix[i][1] - 1)
+    #     elif matrix[i][1] == i and matrix[i][0] > i:
+    #         matrix[i] = (matrix[i][0] - 1, matrix[i][1])
+    #     j+=1
+
+    j = 0
     for i in range(len(matrix)):
-        if matrix[i][1] < len(matrix) - 1 and matrix[i][0] == 0:
+        if matrix[i][1] < len(matrix) - j - 1 and matrix[i][0] == j:
             matrix[i] = (matrix[i][0], matrix[i][1] + 1)
-        elif matrix[i][1] == len(matrix) - 1 and matrix[i][0] < len(matrix) - 1:
+        elif matrix[i][1] == len(matrix) - j - 1 and matrix[i][0] < len(matrix) - j - 1:
             matrix[i] = (matrix[i][0] + 1, matrix[i][1])
-        elif matrix[i][0] == len(matrix) - 1 and matrix[i][1] > 0:
+        elif matrix[i][0] == len(matrix) - j - 1 and matrix[i][1] > j:
             matrix[i] = (matrix[i][0], matrix[i][1] - 1)
-        elif matrix[i][1] == 0 and matrix[i][0] > 0:
+        elif matrix[i][1] == j and matrix[i][0] > j:
             matrix[i] = (matrix[i][0] - 1, matrix[i][1])
+
+        if i < (len(matrix)) // 2 and len(matrix) % 2 != 0:
+            j += 1
+        elif i >= (len(matrix)) // 2 and len(matrix) % 2 != 0:
+            j -= 1
+        elif i < (len(matrix) - 1) // 2 and len(matrix) % 2 == 0:
+            j += 1
+        elif i >= (len(matrix)) // 2 and len(matrix) % 2 == 0:
+            j -= 1
+
     return matrix
     # pass
 
