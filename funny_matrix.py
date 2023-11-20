@@ -65,8 +65,7 @@ def main():
     matrix = generate_ones(matrix_size)
     while True:
         print_matrix(matrix)
-        matrix_temp = matrix.copy()
-        matrix = transform_matrix(matrix_temp)
+        matrix = transform_matrix(matrix)
         time.sleep(1)
 
 
