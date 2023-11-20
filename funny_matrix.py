@@ -39,12 +39,25 @@ def generate_ones(matrix_size: int):  # -> list[tuple[int, int]]:
 
 
 def transform_matrix(matrix: list[tuple[int, int]]):
+    # for i in range(len(matrix)):
+    #     if i % 2 == 0:
+    #         if matrix[i][1] < len(matrix) - 1 and matrix[i][0] == 0:
+    #             matrix[i] = (matrix[i][0], matrix[i][1] + 1)
+    #         elif matrix[i][1] == len(matrix) - 1 and matrix[i][0] < len(matrix) - 1:
+    #             matrix[i] = (matrix[i][0] + 1, matrix[i][1])
+    #         elif matrix[i][0] == len(matrix) - 1 and matrix[i][1] > 0:
+    #             matrix[i] = (matrix[i][0], matrix[i][1] - 1)
+    #         elif matrix[i][1] == 0 and matrix[i][0] > 0:
+    #             matrix[i] = (matrix[i][0] - 1, matrix[i][1])
     for i in range(len(matrix)):
-        if matrix[i][0] % 2 == 0:
-            if matrix[i][1] < len(matrix):
-                matrix[i] = (matrix[i][0], matrix[i][0] + 1)
-            else:
-                matrix[i] = (matrix[i][0] + 1, matrix[i][0])
+        if matrix[i][1] < len(matrix) - 1 and matrix[i][0] == 0:
+            matrix[i] = (matrix[i][0], matrix[i][1] + 1)
+        elif matrix[i][1] == len(matrix) - 1 and matrix[i][0] < len(matrix) - 1:
+            matrix[i] = (matrix[i][0] + 1, matrix[i][1])
+        elif matrix[i][0] == len(matrix) - 1 and matrix[i][1] > 0:
+            matrix[i] = (matrix[i][0], matrix[i][1] - 1)
+        elif matrix[i][1] == 0 and matrix[i][0] > 0:
+            matrix[i] = (matrix[i][0] - 1, matrix[i][1])
     return matrix
     # pass
 
