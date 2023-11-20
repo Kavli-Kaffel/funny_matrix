@@ -34,31 +34,17 @@ def generate_ones(matrix_size: int):  # -> list[tuple[int, int]]:
     Пример
     [(0,0),(1,1),...(n,n)]
     """
-    matrix = [(0, 0)]
-    for i in range(1, matrix_size):
-        matrix = matrix + [(i, i)]
-    # return [(0, 0), (1, 1), (2, 2)]
+    matrix = [(i, i) for i in range(matrix_size)]
     return matrix
 
 
 def transform_matrix(matrix: list[tuple[int, int]]):
-    i = 0
-    k = 0
-    while True:
-        if i < len(matrix) - 1:
-            matrix[0] = (k, i)
-            i += 1
-        else:
-            matrix[0] = (k, i)
-            i = 0
-            k += 1
-
-        # for i in range(len(matrix)):
-        #     matrix[0] = (0, i)
-        print_matrix(matrix)
-        time.sleep(1)
-    # matrix[len(matrix)] = (len(matrix), len(matrix) - i)
-
+    for i in range(len(matrix)):
+        if matrix[i][0] % 2 == 0:
+            if matrix[i][1] < len(matrix):
+                matrix[i] = (matrix[i][0], matrix[i][0] + 1)
+            else:
+                matrix[i] = (matrix[i][0] + 1, matrix[i][0])
     return matrix
     # pass
 
@@ -76,16 +62,12 @@ def print_matrix(matrix: list[tuple[int, int]]):
 
 def main():
     matrix_size = get_matrix_size()
-    # Matrix = [[0 for x in range(matrix_size)] for y in range(matrix_size)]
-    # matrix_print(matrix_size)
     matrix = generate_ones(matrix_size)
-    matrix_temp = matrix.copy()
-    matrix = transform_matrix(matrix_temp)
-    # while True:
-    #     print_matrix(matrix)
-    #     matrix_temp = matrix.copy()
-    #     matrix = transform_matrix(matrix_temp)
-    #     time.sleep(1)
+    while True:
+        print_matrix(matrix)
+        matrix_temp = matrix.copy()
+        matrix = transform_matrix(matrix_temp)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
